@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const { z } = require('zod');
 const User = require('../models/userModel');
 const { sendOTPEmail } = require('../utils/emailService');
+const { FRONTEND_URL } = process.env.FRONTEND_URL;
 
 // Generate OTP
 const generateOTP = () => {
@@ -232,7 +233,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 const googleCallback = asyncHandler(async (req, res) => {
     try {
         if (!req.user) {
-            return res.redirect('http://localhost:5173/auth-callback?error=No+user+data+found');
+            return res.redirect(`${FRONTEND_URL}/auth-callback?error=No+user+data+found`);
         }
         
         // Generate token for authenticated user
@@ -248,10 +249,10 @@ const googleCallback = asyncHandler(async (req, res) => {
         });
         
         // Redirect to frontend with token as a query parameter
-        res.redirect(`http://localhost:5173/auth-callback?token=${token}`);
+        res.redirect(`${FRONTEND_URL}/auth-callback?token=${token}`);
     } catch (error) {
         console.error('Error in Google callback:', error);
-        res.redirect('http://localhost:5173/auth-callback?error=Server+error+processing+login');
+        res.redirect(`${FRONTEND_URL}/auth-callback?error=Server+error+processing+login`);
     }
 });
 
