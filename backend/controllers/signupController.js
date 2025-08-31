@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const { z } = require('zod');
 const User = require('../models/userModel');
 const { sendOTPEmail } = require('../utils/emailService');
-const { FRONTEND_URL } = process.env.FRONTEND_URL;
+const FRONTEND_URL = process.env.FRONTEND_URL;
 
 // Generate OTP
 const generateOTP = () => {
