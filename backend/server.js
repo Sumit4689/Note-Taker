@@ -14,7 +14,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-    origin: ['https://note-taker-virid.vercel.app'], // Frontend URLs
+    origin: [process.env.FRONTEND_URL], // Frontend URLs
     credentials: true
 }));
 app.use(express.json());
