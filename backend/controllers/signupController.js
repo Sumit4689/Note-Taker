@@ -242,9 +242,9 @@ const googleCallback = asyncHandler(async (req, res) => {
         // Set cookie with token
         res.cookie('jwt', token, {
             httpOnly: false, // Allow JavaScript to read for frontend auth
-            secure: false, // Set to true in production
+            secure: process.env.NODE_ENV === 'production', // True in production
             maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-            sameSite: 'lax',
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // Required for cross-site cookies
             path: '/' // Ensure cookie is available on all paths
         });
         

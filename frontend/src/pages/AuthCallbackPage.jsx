@@ -31,7 +31,7 @@ const AuthCallbackPage = () => {
         try {
           console.log('Fetching user profile...');
           // Get the user profile - the cookie should be sent automatically
-          const response = await fetch('http://localhost:3000/api/users/profile', {
+          const response = await fetch('https://note-taker-backend-km6o.onrender.com/api/users/profile', {
             headers: {
               'Authorization': `Bearer ${token}`
             },

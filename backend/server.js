@@ -14,7 +14,12 @@ const app = express();
 
 // Middleware
 app.use(cors({
-    origin: [process.env.FRONTEND_URL], // Frontend URLs
+    origin: [
+        process.env.FRONTEND_URL, 
+        'https://note-taker-6g7otjam7-sumit4689s-projects.vercel.app',
+        'https://note-taker-sumit4689s-projects.vercel.app',
+        /\.vercel\.app$/  // Allow all Vercel preview URLs
+    ],
     credentials: true
 }));
 app.use(express.json());
